@@ -1,16 +1,16 @@
 package com.lugui14.simplified_transactions.transaction.domain;
 
+import com.lugui14.simplified_transactions.transaction.domain.enums.UserType;
 import jakarta.persistence.Column;
-import jakarta.persistence.DiscriminatorColumn;
-import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +18,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -27,8 +28,6 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @Builder
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
 public class User {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,6 +49,15 @@ public class User {
     @Column(nullable = false)
     @NotBlank(message = "User password cannot be empty")
     private String password;
+
+    @Column(nullable = false)
+    @NotNull(message = "User balance cannot be null")
+    private BigDecimal balance;
+
+    @Enumerated(EnumType.STRING)
+    @NotBlank(message = "User type cannot be null")
+    @Column(nullable = false)
+    private UserType type;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 
