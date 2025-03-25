@@ -1,10 +1,7 @@
 package com.lugui14.simplified_transactions.transaction.domain;
 
-import com.lugui14.simplified_transactions.transaction.domain.enums.TransactionStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -47,13 +44,6 @@ public class Transaction {
     @NotNull(message = "Amount cannot be null")
     @Column(nullable = false)
     private BigDecimal amount;
-
-    @Column()
-    private String description;
-
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private TransactionStatus status = TransactionStatus.PENDING;
 
     private LocalDateTime createdAt = LocalDateTime.now();
 }
