@@ -10,15 +10,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
@@ -26,7 +25,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@RequiredArgsConstructor
 @Builder
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type", discriminatorType = DiscriminatorType.STRING)
@@ -35,22 +34,23 @@ public class User {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @NotBlank(message = "Name cannot be null")
     @Column(nullable = false)
+    @NotBlank(message = "User name cannot be empty")
     private String name;
 
-    @NotBlank(message = "CPF cannot be null")
     @Column(length = 11, unique = true, nullable = false)
+    @NotBlank(message = "User cpf cannot be empty")
+    @Size(min = 11, max = 11, message = "User cpf must have 11 digits")
     private String cpf;
 
-    @NotBlank(message = "Email cannot be null")
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "User email cannot be empty")
     private String email;
 
-    @NotBlank(message = "Password cannot be null")
     @Column(nullable = false)
+    @NotBlank(message = "User password cannot be empty")
     private String password;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
 }
