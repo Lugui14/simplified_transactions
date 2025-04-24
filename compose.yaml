@@ -2,7 +2,6 @@ services:
   postgres:
     image: postgres:16-alpine
     container_name: postgres_simplified_transactions
-    restart: always
     environment:
       POSTGRES_USER: ${DATABASE_USER}
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
@@ -17,7 +16,6 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: simplified_transactions
-    restart: always
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://${DATABASE_HOST}:5432/${DATABASE_NAME}
       SPRING_DATASOURCE_USERNAME: ${DATABASE_USER}

@@ -20,7 +20,7 @@ import java.time.LocalDateTime;
 @Service
 public class TransactionService {
 
-    private ApplicationEventPublisher eventPublisher;
+    private final ApplicationEventPublisher eventPublisher;
 
     private final TransactionRepository transactionRepository;
     private final UserService userService;
