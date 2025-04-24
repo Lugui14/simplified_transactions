@@ -2,6 +2,7 @@ package com.lugui14.simplified_transactions.transaction.controllers;
 
 import com.lugui14.simplified_transactions.transaction.domain.Transaction;
 import com.lugui14.simplified_transactions.transaction.domain.dtos.TransactionDto;
+import com.lugui14.simplified_transactions.transaction.domain.dtos.TransactionHistoryDto;
 import com.lugui14.simplified_transactions.transaction.services.TransactionService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,8 +25,13 @@ public class TransactionController {
     }
 
     @GetMapping("/history/{userId}")
-    public ResponseEntity<Page<Transaction>> getTransactionHistory(@PathVariable Integer userId, Pageable pageable) {
+    public ResponseEntity<Page<TransactionHistoryDto>> getTransactionHistory(@PathVariable Integer userId, Pageable pageable) {
         return ResponseEntity.ok(transactionService.transactionHistory(userId, pageable));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Transaction> getTransaction(@PathVariable Integer id) {
+        return ResponseEntity.ok(transactionService.findById(id));
     }
 
     @PostMapping

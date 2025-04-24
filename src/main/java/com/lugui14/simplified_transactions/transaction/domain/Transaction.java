@@ -1,7 +1,10 @@
 package com.lugui14.simplified_transactions.transaction.domain;
 
+import com.lugui14.simplified_transactions.transaction.domain.enums.TransactionStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,6 +43,10 @@ public class Transaction {
     @JoinColumn(name = "user_id_to", nullable = false)
     @NotNull(message = "Receiver user cannot be null")
     private User userTo;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private TransactionStatus status = TransactionStatus.PENDING;
 
     @NotNull(message = "Amount cannot be null")
     @Column(nullable = false)
