@@ -31,6 +31,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    @Transactional
+    public User rechargeValue(Integer id, BigDecimal value) {
+        this.addBalance(id, value);
+        return this.findById(id);
+    }
+
     public void addBalance(Integer id, BigDecimal amount) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find common user with id " + id));
 

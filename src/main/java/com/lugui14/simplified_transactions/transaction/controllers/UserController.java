@@ -1,6 +1,7 @@
 package com.lugui14.simplified_transactions.transaction.controllers;
 
 import com.lugui14.simplified_transactions.transaction.domain.User;
+import com.lugui14.simplified_transactions.transaction.domain.dtos.AddBalanceDto;
 import com.lugui14.simplified_transactions.transaction.domain.dtos.UserPresenterDto;
 import com.lugui14.simplified_transactions.transaction.services.UserService;
 import jakarta.validation.Valid;
@@ -31,5 +32,10 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserPresenterDto> createUser(@RequestBody @Valid User user) {
         return ResponseEntity.status(HttpStatus.CREATED).body(new UserPresenterDto(this.userService.create(user)));
+    }
+
+    @PostMapping("/add-balance")
+    public ResponseEntity<UserPresenterDto> addBalance(@RequestBody AddBalanceDto addBalanceDto) {
+        return ResponseEntity.ok(new UserPresenterDto(this.userService.rechargeValue(addBalanceDto.userId(), addBalanceDto.value())));
     }
 }

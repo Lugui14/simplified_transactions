@@ -52,10 +52,10 @@ public class User {
 
     @Column(nullable = false)
     @NotNull(message = "User balance cannot be null")
-    private BigDecimal balance;
+    private BigDecimal balance = BigDecimal.ZERO;
 
     @Enumerated(EnumType.STRING)
-    @NotBlank(message = "User type cannot be null")
+    @NotNull(message = "User type cannot be null")
     @Column(nullable = false)
     private UserType type;
 
