@@ -19,3 +19,6 @@ this project is used to simulate a transaction service in a simplified way
 - Spring Boot
 - PostgreSQL
 - Docker
+
+## 📚 Documentation
+(SpringDocs) API Documentation is available at [docs](http://localhost:8080/swagger-ui.html)
