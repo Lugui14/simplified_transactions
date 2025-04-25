@@ -37,7 +37,7 @@ public class UserService {
         return this.findById(id);
     }
 
-    public void addBalance(Integer id, BigDecimal amount) {
+    private void addBalance(Integer id, BigDecimal amount) {
         User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find common user with id " + id));
 
         user.setBalance(user.getBalance().add(amount));

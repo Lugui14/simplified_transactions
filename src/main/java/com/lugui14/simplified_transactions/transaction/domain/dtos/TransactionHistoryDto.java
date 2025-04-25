@@ -6,6 +6,7 @@ import com.lugui14.simplified_transactions.transaction.domain.enums.TransactionS
 import java.math.BigDecimal;
 
 public record TransactionHistoryDto(
+        Integer id,
         BigDecimal value,
         UserTransactionDto payer,
         UserTransactionDto payee,
@@ -13,6 +14,7 @@ public record TransactionHistoryDto(
 ) {
     public TransactionHistoryDto(Transaction transaction) {
         this(
+                transaction.getId(),
                 transaction.getAmount(),
                 new UserTransactionDto(transaction.getUserFrom()),
                 new UserTransactionDto(transaction.getUserTo()),

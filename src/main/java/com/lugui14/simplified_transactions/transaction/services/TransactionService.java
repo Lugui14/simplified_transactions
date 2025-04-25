@@ -80,7 +80,7 @@ public class TransactionService {
         }
 
         userService.subtractBalance(transaction.getUserFrom().getId(), transaction.getAmount());
-        userService.addBalance(transaction.getUserTo().getId(), transaction.getAmount());
+        userService.rechargeValue(transaction.getUserTo().getId(), transaction.getAmount());
 
         transaction.setStatus(TransactionStatus.APPROVED);
         transactionRepository.save(transaction);
