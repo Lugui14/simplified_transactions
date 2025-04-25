@@ -36,5 +36,23 @@ services:
     depends_on:
       - postgres
 
+  tests:
+    image: maven:3.8.4-eclipse-temurin-17
+    container_name: simplified_transactions_tests
+    volumes:
+      - .:/app
+      - ~/.m2:/root/.m2
+    working_dir: /app
+    command: mvn clean test
+    environment:
+      - SPRING_PROFILES_ACTIVE=test
+    networks:
+      - testnet
+    profiles:
+      - test
+
+networks:
+  testnet:
+
 volumes:
   pgdata2:
