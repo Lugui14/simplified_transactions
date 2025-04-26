@@ -34,3 +34,10 @@ this project is used to simulate a transaction service in a simplified way
 
 ## 📚 Documentation
 (SpringDocs) API Documentation is available at [docs](http://localhost:8080/swagger-ui.html)
+
+## 📬 Contact Me
+
+If you have any questions, suggestions, or just want to connect, feel free to reach out!
+
+- Email: [zanelallopes9977@gmail.com](mailto:zanelallopes9977@gmail.com)
+- LinkedIn: [LinkedIn Profile](https://www.linkedin.com/in/luiz-guilherme-zanella-lopes-b929791b0)
