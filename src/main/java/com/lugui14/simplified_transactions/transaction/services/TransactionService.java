@@ -65,7 +65,7 @@ public class TransactionService {
 
         Transaction savedTransaction = transactionRepository.save(transaction);
 
-        eventPublisher.publishEvent(new TransactionCreatedEvent(savedTransaction.getId()));
+        eventPublisher.publishEvent(new TransactionCreatedEvent(this, savedTransaction.getId()));
 
         return savedTransaction;
     }
@@ -85,6 +85,6 @@ public class TransactionService {
         transaction.setStatus(TransactionStatus.APPROVED);
         transactionRepository.save(transaction);
 
-        eventPublisher.publishEvent(new TransactionConfirmedEvent(transaction.getUserTo().getId(), transactionId));
+        eventPublisher.publishEvent(new TransactionConfirmedEvent(this, transaction.getUserTo().getId(), transactionId));
     }
 }

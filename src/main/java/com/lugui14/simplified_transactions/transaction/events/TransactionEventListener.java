@@ -22,14 +22,14 @@ public class TransactionEventListener {
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void handleTransactionCreatedEvent(TransactionCreatedEvent event) {
-        transactionService.processTransaction(event.transactionId());
+        transactionService.processTransaction(event.getTransactionId());
     }
 
     @Async
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void handleTransactionCreatedEvent(TransactionConfirmedEvent event) {
         notificationService.sendNotification(
-                new NotificationDto(event.userId(), "Your transaction with id " + event.transactionId() + " has been confirmed.")
+                new NotificationDto(event.getUserId(), "Your transaction with id " + event.getTransactionId() + " has been confirmed.")
         );
     }
 }
